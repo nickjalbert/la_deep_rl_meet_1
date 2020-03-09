@@ -8,7 +8,7 @@ Repo for first meetup of LA Deep RL group
 Developed on OS X 10.15.3 under Python 3.7.6.
 You can setup your dev environment as follows:
 
-* Clone the repo: `git clone git@github.com:nickjalbert/la_deep_rl_meet_1.git`
+* Clone the repo: `git clone https://github.com/nickjalbert/la_deep_rl_meet_1.git`
 * Enter directory: `cd la_deep_rl_meet_1`
 * Create a virtualenv: ``virtualenv -p `which python3` la_deep_rl_meet_1``
 * Activate your virtualenv: `source la_deep_rl_meet_1/bin/activate`
