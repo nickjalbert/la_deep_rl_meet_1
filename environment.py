@@ -23,7 +23,8 @@ class CorridorEnv(gym.Env):
         #   * action is either a 0 (move left) or 1 (move right)
         #   * the agent hits wall if it walks left at self.position == 0
         #   * the agent succeeds when self.position == self.length
-        #   * reward scheme motivates the agent to traverse the corridor
+        #   * each step should award the agent -1 until goal is reached
+        #   * Returns a 4-tuple: (new state, reward, done, info)
         # =========
         pass
 
@@ -40,3 +41,46 @@ class CorridorEnv(gym.Env):
 
     def close(self):
         pass
+
+
+# Unit tests for CorridorEnv
+def run_tests():
+    print("Testing CorridorEnv...")
+    env = CorridorEnv({"length": 5})
+    assert env.reset() == 0, "Initial position is 0"
+    # Left step in initial position hits a wall and does not change state
+    state, reward, done, info = env.step(0)
+    assert state == 0
+    assert reward == -1
+    assert done is False
+    # Right step should move agent closer to goal
+    state, reward, done, info = env.step(1)
+    assert state == 1
+    assert reward == -1
+    assert done is False
+    # Left step returns agent to initial position
+    state, reward, done, info = env.step(0)
+    assert state == 0
+    assert reward == -1
+    assert done is False
+    # Step to end of corridor
+    state, reward, done, info = env.step(1)
+    assert state == 1
+    assert done is False
+    state, reward, done, info = env.step(1)
+    assert state == 2
+    assert done is False
+    state, reward, done, info = env.step(1)
+    assert state == 3
+    assert done is False
+    state, reward, done, info = env.step(1)
+    assert state == 4
+    assert done is False
+    state, reward, done, info = env.step(1)
+    assert state == 5
+    assert done is True
+    print("Tests passed!")
+
+
+if __name__ == "__main__":
+    run_tests()
