@@ -13,7 +13,7 @@ You can setup your dev environment as follows:
 * Create a virtualenv: ``virtualenv -p `which python3` la_deep_rl_meet_1``
 * Activate your virtualenv: `source la_deep_rl_meet_1/bin/activate`
 * Install dependencies:
-    * `pip install -r requirements.txt`, or
+    * `pip install -r requirements.txt` or
     * `pip install gym ray ray[rllib] ray[debug] pandas requests tensorflow`
 
 ## Files
@@ -23,3 +23,23 @@ You can setup your dev environment as follows:
 * `random_agent.py` - skeleton of a random agent
 * `solutions/random_agent.py` - a full implementation of a random agent
 * `ppo_agent.py` - a full implementation of an agent that uses a state of the art PPO algorithm
+
+
+## Commandline Environment Demo
+
+```
+>>> import gym
+>>> env = gym.make('CartPole-v0')
+>>> env.reset()
+>>> env.step(0)
+```
+
+## Run environment unit tests
+
+* Skeleton: `python environment.py`
+* Full implementation: `cd solutions/ && python environment.py`
+
+## Run PPO agent
+
+* `cd solutions/ && python ppo_agent.py`
+
