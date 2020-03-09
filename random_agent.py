@@ -1,5 +1,6 @@
 from environment import CorridorEnv
 
+
 class RandomAgent:
     def choose_action(self, state):
         # =========
@@ -9,7 +10,7 @@ class RandomAgent:
         return 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     agent = RandomAgent()
     environment = CorridorEnv()
     state = environment.reset()
@@ -18,8 +19,8 @@ if __name__ == '__main__':
     cumulative_reward = 0
     while not done:
         action = agent.choose_action(state)
-        state, reward, done, info =  environment.step(action)
+        state, reward, done, info = environment.step(action)
         step_count += 1
         cumulative_reward += reward
-    print(f'Total steps: {step_count}')
-    print(f'Cumulative reward: {cumulative_reward}')
+    print(f"Total steps: {step_count}")
+    print(f"Cumulative reward: {cumulative_reward}")
