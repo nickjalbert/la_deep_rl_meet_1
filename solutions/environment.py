@@ -6,9 +6,9 @@ import gym
 class CorridorEnv(gym.Env):
     metadata = {"render.modes": ["human"]}
 
-    def __init__(self, config_env=None):
-        self.config_env = config_env if config_env else {}
-        self.length = int(self.config_env.get("length", 10))
+    def __init__(self, env_config=None):
+        self.env_config = env_config if env_config else {}
+        self.length = int(self.env_config.get("length", 10))
         self.action_space = gym.spaces.Discrete(2)
         self.observation_space = gym.spaces.Discrete(self.length + 1)
         self.reset()
