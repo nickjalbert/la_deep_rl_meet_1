@@ -11,6 +11,11 @@ class MonteCarloAgent:
         self.q = {}  # key is (state,action) tuple
         self.returns = defaultdict(list) # key is (state, action) tuple
 
+    def choose_action(self, state, prob_random):
+        # =========
+        # TODO - Implement an epsilon-greedy policy function from state to next agent action
+        # =========
+
     def train(self, num_rollouts=1000):
         # =========
         # TODO - Implement a training function that runs some rollouts and,
@@ -18,11 +23,6 @@ class MonteCarloAgent:
         #        rollout. Use the self.returns and self.q to do the memorizing.
         # =========
             
-    def choose_action(self, state, prob_random):
-        # =========
-        # TODO - Implement an epsilon-greedy policy function from state to next agent action
-        # =========
-
 
 if __name__ == '__main__':
     environment = CorridorEnv({"length": 10})

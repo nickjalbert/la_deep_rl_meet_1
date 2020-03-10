@@ -11,6 +11,13 @@ class MonteCarloAgent:
         self.returns = defaultdict(list) # key is (state, action) tuple
         self.reward_discount = 0.9
 
+    def choose_action(self, state, prob_random):
+        if random.random() < prob_random:
+            return self.env.action_space.sample()
+        else:
+            rewards = [self.q.get((state, a), 0) for a in range(self.env.action_space.n)]
+            return np.argmax(rewards)
+
     def train(self, num_rollouts=1000):
         print("Length of training rollouts:")
         for rollout_num in range(num_rollouts):
@@ -37,13 +44,7 @@ class MonteCarloAgent:
                 returns_per_step[i] = r + self.reward_discount * returns_per_step[i + 1]
                 self.returns[(s, a)].append(returns_per_step[i])
                 self.q[(s,a)] = np.mean(self.returns[(s,a)])
-            
-    def choose_action(self, state, prob_random):
-        if random.random() < prob_random:
-            return self.env.action_space.sample()
-        else:
-            rewards = [self.q.get((state, a), 0) for a in range(self.env.action_space.n)]
-            return np.argmax(rewards)
+
 
 
 if __name__ == '__main__':
