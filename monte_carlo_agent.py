@@ -1,60 +1,45 @@
-from environment import CorridorEnv
+from collections import defaultdict
+import numpy as np
+import random
+from solutions.environment import CorridorEnv
 
 class MonteCarloAgent:
-    def __init__(self, epsilon=0.1):
-        self.state_rewards = {}
+    def __init__(self, env, epsilon=0.9):
+        self.env = env
         self.epsilon = epsilon
-        self.q = {}
-        self.returns = {}
+        self.reward_discount = 0.9
+        self.q = {}  # key is (state,action) tuple
+        self.returns = defaultdict(list) # key is (state, action) tuple
 
-    def train(self, env, num_rollouts=1000):
+    def train(self, num_rollouts=1000):
         # =========
         # TODO - Implement a training function that runs some rollouts and,
-        #        for each state encountered, memorizes the future return
-        #        of the rollout.
+        #        for each state encountered, memorizes the future return of the
+        #        rollout. Use the self.returns and self.q to do the memorizing.
         # =========
-        for rollout_num in num_rollouts:
-            state = environment.reset()
-            done = False
-            states, actions, rewards = [], [], []
-            while not done:
-                states.append(state)
-
-                action = agent.choose_action(state)
-                actions.append(action)
-
-                state, reward, done, info =  environment.step(action)
-                rewards.append(reward)
-
-            print(f"updating q for rollout {rollout_num} with {len(rollout_rewards)} steps")
-            # work backwards through rewards in this rollout, updating Q at each step.
-            for i in range(len(rollout_rewards), 0, -1):
-                print(i)
             
-    def choose_action(self, state):
+    def choose_action(self, state, prob_random):
         # =========
-        # TODO - Implement an epsilong-greedy policy function from state to next agent action
+        # TODO - Implement an epsilon-greedy policy function from state to next agent action
         # =========
-
-        rewards = state_rewards.get(state, [])
-        
-        return 1
 
 
 if __name__ == '__main__':
-    agent = MonteCarloAgent()
-    environment = CorridorEnv()
+    environment = CorridorEnv({"length": 10})
+    agent = MonteCarloAgent(environment)
 
     # Train agent
-    agent.train(environment, num_rollouts=1)
+    print("== training MC agent ==")
+    agent.train(num_rollouts=100)
 
     # Test our agent
+    print("\n== testing agent ==")
     state = environment.reset()
     done = False
     step_count = 0
     cumulative_reward = 0
     while not done:
-        action = agent.choose_action(state)
+        action = agent.choose_action(state, 0)
         state, reward, done, info =  environment.step(action)
         step_count += 1
         cumulative_reward += reward
