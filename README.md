@@ -1,6 +1,7 @@
 # LA Deep RL Meetup 1
 
-Repo for first meetup of LA Deep RL group
+Repo for first meetup of LA Deep RL group.
+You can find the meetup slides in [slides.pdf](https://raw.githubusercontent.com/nickjalbert/la_deep_rl_meet_1/master/slides.pdf) in this repo.
 
 
 ## Dev Setup
