@@ -1,5 +1,7 @@
 # Env that models a 1D corridor (you can move left or right)
 # Goal is to get to the end (i.e. move right [length] number of times)
+# Inspired by Ray's RLlib example environment: https://github.com/ray-project/ray/blob/master/rllib/examples/custom_env.py
+# See also Sutton and Barto (e.g. example 13.1 on page 323).
 import gym
 
 
